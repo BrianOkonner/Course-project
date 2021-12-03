@@ -4,7 +4,6 @@ go 1.17
 
 require (
 	github.com/TRomesh/grpc-pokemon v0.0.0-20211006170247-bd7408597cb5
-	github.com/joho/godotenv v1.4.0
 	go.mongodb.org/mongo-driver v1.8.0
 	google.golang.org/grpc v1.42.0
 	google.golang.org/protobuf v1.27.1
