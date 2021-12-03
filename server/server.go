@@ -1,8 +1,9 @@
 package pokemonpc
 
 import (
-	"context"
 	"fmt"
+
+	"golang.org/x/net/context"
 
 	pokemonpc "github.com/TRomesh/grpc-pokemon/pokemon"
 	"go.mongodb.org/mongo-driver/bson/primitive"

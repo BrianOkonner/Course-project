@@ -1,11 +1,12 @@
 package pokemonpc
 
 import (
-	"golang.org/x/net/context"
 	"fmt"
 	"io"
 	"log"
 	"os"
+
+	"golang.org/x/net/context"
 
 	pokemonpc "github.com/TRomesh/grpc-pokemon/pokemon"
 	"github.com/joho/godotenv"
