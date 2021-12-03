@@ -1,7 +1,7 @@
 package pokemonpc
 
 import (
-	"context"
+	"golang.org/x/net/context"
 	"fmt"
 	"io"
 	"log"
