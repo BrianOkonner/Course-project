@@ -1,4 +1,4 @@
-package pokemonp
+package pokemonpc
 
 import (
 	"context"
