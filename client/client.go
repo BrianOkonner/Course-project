@@ -1,12 +1,11 @@
-package pokemonpc
+package main
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"log"
 	"os"
-
-	"golang.org/x/net/context"
 
 	pokemonpc "github.com/TRomesh/grpc-pokemon/pokemon"
 	"github.com/joho/godotenv"
@@ -35,11 +34,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not connect: %v", err)
 	}
-	defer cc.Close() // Может, в отдельной функции ошибка будет обработана?
+	defer cc.Close() // Maybe this should be in a separate function and the error handled?
 
 	c := pokemonpc.NewPokemonServiceClient(cc)
 
-	// создаем покемона
+	// create Pokemon
 	fmt.Println("Creating the pokemon")
 	pokemon := &pokemonpc.Pokemon{
 		Pid:         "Poke01",
@@ -54,7 +53,7 @@ func main() {
 	fmt.Printf("Pokemon has been created: %v", createPokemonRes)
 	pokemonID := createPokemonRes.GetPokemon().GetId()
 
-	// считываем покемона
+	// read Pokemon
 	fmt.Println("Reading the pokemon")
 	readPokemonReq := &pokemonpc.ReadPokemonRequest{Pid: pokemonID}
 	readPokemonRes, readPokemonErr := c.ReadPokemon(context.Background(), readPokemonReq)
@@ -64,7 +63,7 @@ func main() {
 
 	fmt.Printf("Pokemon was read: %v \n", readPokemonRes)
 
-	// обновляем покемона
+	// update Pokemon
 	newPokemon := &pokemonpc.Pokemon{
 		Id:          pokemonID,
 		Pid:         "Poke01",
@@ -78,7 +77,7 @@ func main() {
 	}
 	fmt.Printf("Pokemon was updated: %v\n", updateRes)
 
-	// удаляем покемона
+	// delete Pokemon
 	deleteRes, deleteErr := c.DeletePokemon(context.Background(), &pokemonpc.DeletePokemonRequest{Pid: pokemonID})
 
 	if deleteErr != nil {
@@ -86,7 +85,7 @@ func main() {
 	}
 	fmt.Printf("Pokemon was deleted: %v \n", deleteRes)
 
-	// выводим список покемонов
+	// list Pokemons
 
 	stream, err := c.ListPokemon(context.Background(), &pokemonpc.ListPokemonRequest{})
 	if err != nil {
