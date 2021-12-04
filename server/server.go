@@ -217,7 +217,7 @@ func (*server) ListPokemon(_ *pokemonpc.ListPokemonRequest, stream pokemonpc.Pok
 
 func main() {
 
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -227,7 +227,7 @@ func main() {
 		port = defaultPort
 	}
 
-	mongo_url := os.Getenv("MONGODB_URL")
+	mongo_url := os.Getenv("mongodb+srv")
 
 	// if we crash the go code, we get the file name and line number
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
