@@ -17,13 +17,8 @@ import (
 const defaultPort = "4041"
 
 func main() {
-	var name1 string
-	var password1 string
-	var URI string
-	
 
 	fmt.Println("Pokemon Client")
-	godotenv.
 
 	err := godotenv.Load("client.env")
 	if err != nil {
@@ -35,8 +30,8 @@ func main() {
 		port = defaultPort
 	}
 
-	
-	client, err := mongo.NewClient(options.Client().ApplyURI(URI))
+	mongo_url := os.Getenv("MONGODB_URI")
+	client, err := mongo.NewClient(options.Client().ApplyURI(mongo_url))
 
 	err = client.Connect(context.TODO())
 	if err != nil {
