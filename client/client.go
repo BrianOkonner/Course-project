@@ -32,6 +32,9 @@ func main() {
 
 	mongo_url := os.Getenv("MONGODB_URI")
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongo_url))
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	err = client.Connect(context.TODO())
 	if err != nil {
