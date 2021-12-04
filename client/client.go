@@ -9,6 +9,8 @@ import (
 
 	pokemonpc "github.com/TRomesh/grpc-pokemon/pokemon"
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"google.golang.org/grpc"
 )
 
@@ -16,9 +18,11 @@ const defaultPort = "4041"
 
 func main() {
 
+	var name string
+	var password int
 	fmt.Println("Pokemon Client")
 
-	err := godotenv.Load(".env")
+	err := godotenv.Load("env.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -28,6 +32,19 @@ func main() {
 		port = defaultPort
 	}
 
+	fmt.Print("Введите имя пользователя: ")
+	fmt.Fscan(os.Stdin, &name)
+
+	fmt.Print("Введите пароль: ")
+	fmt.Fscan(os.Stdin, &password)
+	mongo_url := os.Getenv("MONGODB_URI")
+
+	client, err := mongo.NewClient(options.Client().ApplyURI(mongo_url))
+
+	err = client.Connect(context.TODO())
+	if err != nil {
+		log.Fatal(err)
+	}
 	opts := grpc.WithInsecure()
 
 	cc, err := grpc.Dial("localhost:4041", opts)
