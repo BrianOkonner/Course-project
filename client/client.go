@@ -17,12 +17,15 @@ import (
 const defaultPort = "4041"
 
 func main() {
+	var name1 string
+	var password1 string
+	var URI string
+	
 
-	var name string
-	var password int
 	fmt.Println("Pokemon Client")
+	godotenv.
 
-	err := godotenv.Load("env.env")
+	err := godotenv.Load("client.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -32,13 +35,26 @@ func main() {
 		port = defaultPort
 	}
 
+	type User struct {
+		name string
+		password string
+	}
+
 	fmt.Print("Введите имя пользователя: ")
-	fmt.Fscan(os.Stdin, &name)
+	fmt.Fscan(os.Stdin, User.name1)
 
 	fmt.Print("Введите пароль: ")
-	fmt.Fscan(os.Stdin, &password)
-	mongo_url := os.Getenv("MONGODB_URI")
-	client, err := mongo.NewClient(options.Client().ApplyURI(mongo_url))
+	fmt.Fscan(os.Stdin, password1)
+
+	User.name=name1
+	User.password=password1
+
+	t := template.New("")
+	URI_T := "mongodb+srv://{{.name}}:{{.password}}@cluster0.9rqt3.mongodb.net/Cluster0?retryWrites=true&w=majority"
+    t.Parse(URI_T)
+	t.Execute(,User)
+	
+	client, err := mongo.NewClient(options.Client().ApplyURI(URI))
 
 	err = client.Connect(context.TODO())
 	if err != nil {
