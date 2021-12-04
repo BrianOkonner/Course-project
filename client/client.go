@@ -38,7 +38,6 @@ func main() {
 	fmt.Print("Введите пароль: ")
 	fmt.Fscan(os.Stdin, &password)
 	mongo_url := os.Getenv("MONGODB_URI")
-
 	client, err := mongo.NewClient(options.Client().ApplyURI(mongo_url))
 
 	err = client.Connect(context.TODO())

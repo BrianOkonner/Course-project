@@ -227,7 +227,7 @@ func main() {
 		port = defaultPort
 	}
 
-	mongo_url := os.Getenv("mongodb+srv")
+	mongo_url := os.Getenv("MONGODB_URI")
 
 	// if we crash the go code, we get the file name and line number
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
