@@ -5,7 +5,6 @@ go 1.17
 require (
 	github.com/TRomesh/grpc-pokemon v0.0.0-20211006170247-bd7408597cb5
 	github.com/joho/godotenv v1.4.0
-	github.com/preludeorg/pneuma v0.0.0-20211110193914-744b7d8f5ac3
 	go.mongodb.org/mongo-driver v1.8.0
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4
 	google.golang.org/grpc v1.42.0
@@ -13,7 +12,6 @@ require (
 )
 
 require (
-	github.com/creack/pty v1.1.11 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
