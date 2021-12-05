@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package swords;
+option go_package = "/github.com/BrianOkonner/Course-project;game";
+
+service Chooseclass {
+   rpc Do(Requestcls) returns (Responsecls) {}
+}
+message Requestcls {
+   string message = 1;
+}
+
+message Responsecls {
+   string message = 1;
+}
